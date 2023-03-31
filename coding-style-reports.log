@@ -1,0 +1,5 @@
+./main.c:1: MAJOR:C-F6
+./main.c:1: MINOR:C-G1
+./main.c:2: MINOR:C-L4
+./main.c:3: MINOR:C-L3
+./main.c:4: INFO:C-A3
