@@ -2,7 +2,8 @@ name: chocolatine
 
 on: push
 
-env: EXECUTABLES: ""
+env:
+  EXECUTABLES: ""
 
 jobs:
   check_coding_style:
