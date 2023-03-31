@@ -39,10 +39,8 @@ jobs:
         run: make
         timeout-minutes: 2
       - name: clean repo
-        uses: actions/checkout@v3
         run: make clean
       - name: run program
-        uses: actions/checkout@v3
         run: |
           read -a executable_list <<< "$EXECUTABLES"
           for executable in "${executable_list[@]}"; do
