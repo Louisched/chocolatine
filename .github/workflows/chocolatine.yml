@@ -13,6 +13,7 @@ jobs:
       - name: Run coding style
         run:
           check.sh $(pwd) $(pwd)
+      - name: parse and display
         run: |
           if [ -f coding-style-reports.log ]; then
             while read line; do
