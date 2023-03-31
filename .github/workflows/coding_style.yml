@@ -1,3 +1,5 @@
+name: chocolatine
+
 on: push
 
 jobs:
@@ -11,3 +13,14 @@ jobs:
       - name: Run coding style
         run:
           check.sh $(pwd) $(pwd)
+        run: |
+        if [ -f coding-style-reports.log ]; then
+          while read line; do
+            f = $(echo $(line) | cut -d ':' -f 1)
+            nb = $(echo $(line) | cut -d ':' -f 2)
+            type = $(echo $(line) | cut -d ':' -f 3)
+            err_code = $(echo $(line) | cut -d ':' -f 4)
+            echo "::error title=${type} coding style error, f=${f}, line={nb}"
+          done > coding-style-reports.log
+        fi
+        
