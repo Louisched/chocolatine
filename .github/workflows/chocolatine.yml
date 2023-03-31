@@ -2,6 +2,8 @@ name: chocolatine
 
 on: push
 
+env: EXECUTABLES: ""
+
 jobs:
   check_coding_style:
     runs-on: ubuntu-latest
@@ -25,4 +27,23 @@ jobs:
               echo "::error title=${type} coding style error,file=${file},line={nb}::${err_code}"
             done < coding-style-reports.log
           fi
-          
+  
+  check_program_compilation:
+    runs_on: ubuntu-latest
+    container:
+      image: epitechcontent/epitest-docker:latest
+    steps:
+      - name: check program compilation
+        uses: actions/checkout@v3
+        run: make
+        timeout-minutes: 2
+      - name: clean repo
+        uses: actions/checkout@v3
+        run: make clean
+      - name: run program
+        uses: actions/checkout@v3
+        run: |
+          read -a executable_list <<< "$EXECUTABLES"
+          for executable in "${executable_list[@]}"; do
+            ./$executable
+          done
