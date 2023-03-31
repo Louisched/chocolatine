@@ -17,11 +17,11 @@ jobs:
         run: |
           if [ -f coding-style-reports.log ]; then
             while read line; do
-              f = $(echo $(line) | cut -d ':' -f 1)
-              nb = $(echo $(line) | cut -d ':' -f 2)
-              type = $(echo $(line) | cut -d ':' -f 3)
-              err_code = $(echo $(line) | cut -d ':' -f 4)
-              echo "::error title=${type} coding style error, f=${f}, line={nb}::{err_code}"
+              f= $(echo $(line) | cut -d ':' -f 1)
+              nb= $(echo $(line) | cut -d ':' -f 2)
+              type= $(echo $(line) | cut -d ':' -f 3)
+              err_code= $(echo $(line) | cut -d ':' -f 4)
+              echo "::error title=${type} coding style error,file=${f},line={nb}::{err_code}"
             done > coding-style-reports.log
           fi
           
